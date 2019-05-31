@@ -52,7 +52,7 @@ degreeType Student::getDegreeProgram()
 
 std::string Student::getStudentID()
 {
-	return this->studentID;
+	return studentID;
 }
 
 void Student::getStudentName()

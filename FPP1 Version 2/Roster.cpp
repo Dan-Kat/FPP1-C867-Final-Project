@@ -17,7 +17,7 @@ void Roster::add(string studentID, string firstName, string lastName, string ema
 	tempDaysInCourse[0] = daysInCourse1;
 	tempDaysInCourse[1] = daysInCourse2;
 	tempDaysInCourse[2] = daysInCourse3;
-
+	
 	Student *newStudentPtr = new Student(studentID, firstName, lastName, emailAddress, age, tempDaysInCourse, convert(studentDegree));
 	classRosterArray[size] = newStudentPtr;
 	size++;
@@ -70,34 +70,32 @@ int main() {
 	"A5,Daniel,Creutz,dcreut1@wgu.edu,26,20,50,50,SOFTWARE" };
 
 	char delimeter = ',';
-	string iStudentID[5];
-	string iFirstName[5];
-	string iLastName[5];
-	string iEmail[5];
-	string iAge[5];
-	string iDaysTC1[5];
-	string iDaysTC2[5];
-	string iDaysTC3[5];
-	string iDegree[5];
+	string iStudentID;
+	string iFirstName;
+	string iLastName;
+	string iEmail;
+	string iAge;
+	string iDaysTC1;
+	string iDaysTC2;
+	string iDaysTC3;
+	string iDegree;
 	
 	for (int i = 0; i < sizeof(studentData - 1); ++i) {
 		istringstream iss;
 
 		iss.str(studentData[i]);
-		getline(iss, iStudentID[i], delimeter);
-		getline(iss, iFirstName[i], delimeter);
-		getline(iss, iLastName[i], delimeter);
-		getline(iss, iEmail[i], delimeter);
-		getline(iss, iAge[i], delimeter);
-		getline(iss, iDaysTC1[i], delimeter);
-		getline(iss, iDaysTC2[i], delimeter);
-		getline(iss, iDaysTC3[i], delimeter);
-		getline(iss, iDegree[i], delimeter);
+		getline(iss, iStudentID, delimeter);
+		getline(iss, iFirstName, delimeter);
+		getline(iss, iLastName, delimeter);
+		getline(iss, iEmail, delimeter);
+		getline(iss, iAge, delimeter);
+		getline(iss, iDaysTC1, delimeter);
+		getline(iss, iDaysTC2, delimeter);
+		getline(iss, iDaysTC3, delimeter);
+		getline(iss, iDegree, delimeter);
+
+		classRoster.add(iStudentID, iFirstName, iLastName, iEmail, stoi(iAge), stoi(iDaysTC1), stoi(iDaysTC2), stoi(iDaysTC3), iDegree);
 	}
 	
-	for (int i = 0; i < sizeof(studentData - 1); ++i) {
-		classRoster.add(iStudentID[i], iFirstName[i], iLastName[i], iEmail[i], stoi(iAge[i]), stoi(iDaysTC1[i]), stoi(iDaysTC2[i]), stoi(iDaysTC3[i]), iDegree[i]);
-	}
-
 	return 0;
 }
