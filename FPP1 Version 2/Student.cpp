@@ -40,7 +40,7 @@ void Student::print() {
 	cout << "Email: " << emailAddress << "\t";
 	cout << "Age: " << age << "\t";
 	cout << "Days left in course: " << daysInCourse[0] << ", " << daysInCourse[1] << ", " << daysInCourse[2] << "\t";
-	cout << "Students Degree: " << printDegree(studentDegree) << "\t" << endl;
+	cout << "Students Degree: " << printDegree(studentDegree) << "\t" << endl << endl;
 }
 
 string Student::printDegree(degreeType inputDegree)
@@ -77,9 +77,9 @@ int Student::getAge()
 	return age;
 }
 
-int* Student::getDaysTC()
+void Student::getDaysTC()
 {
-	return daysInCourse;
+	cout << daysInCourse[0] << ", " << daysInCourse[1] << ", " << daysInCourse[2] << endl;
 }
 
 degreeType Student::getDegree()
@@ -127,7 +127,7 @@ void Student::setDegree(degreeType newDegreeStr)
 }
 
 //------------------------Destructors----------------------------
-/*Student::~Student()
+Student::~Student()
 {
-	cout << "Calling destructor for object." << endl;
-}*/
+	cout << "Calling destructor for student object." << endl;
+}

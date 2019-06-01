@@ -9,13 +9,13 @@ public:
 	Student();
 	Student(string resStudentID, string resFirstName, string resLastName, string resEmailAddress, int resAge,
 		int resDaysTC1, int resDaysTC2, int resDaysTC3, degreeType resStudentDegree);
-	//~Student();
+	~Student();
 
 	string getStudentID();
 	string getStudentName();
 	string getEmail();
 	int getAge();
-	int* getDaysTC();
+	void getDaysTC();
 	degreeType getDegree();
 	virtual degreeType getDegreeProgram();
 

@@ -12,10 +12,12 @@ public:
 	void remove(string studentID);
 	void printAll();
 	void printDaysInCourse(string studentID);
-	//void printInvalidEmails();
-	void printByDegreeProgram(int degreeeProgram);
+	void printInvalidEmails();
+	void printByDegreeProgram(degreeType degreeProgram);
+	void printByDegreeProgram(string degreeProgram);
 	void printStudentNames();
-private:
+
 	Student* classRosterArray[5];
+private:
 	size_t size = 0;
 };

@@ -29,10 +29,6 @@ void Roster::remove(string studentID)
 			classRosterArray[i] = nullptr;
 			cout << "Student with the ID of " << studentID << " has been removed." << endl;
 		}
-		else {
-			cout << "Student with the ID of " << studentID << " was not found." << endl;
-		}
-
 	}
 	return;
 }
@@ -49,7 +45,9 @@ void Roster::printDaysInCourse(string studentID)
 {
 	for (int i = 0; i < sizeof(classRosterArray) / sizeof(classRosterArray[0]); ++i) {
 		if (classRosterArray[i]->getStudentID() == studentID) {
-			cout << "Days left in courses: " << classRosterArray[i]->getDaysTC() << endl;
+			cout << "Days left in courses: ";
+			classRosterArray[i]->getDaysTC();
+			cout << endl;
 		}
 		else {
 			cout << "Student ID not found in roster." << endl;
@@ -58,19 +56,37 @@ void Roster::printDaysInCourse(string studentID)
 	return;
 }
 
-/*
 void Roster::printInvalidEmails()
 {
 	//match if there is no @ symbol, if there is any white space, if there is no period after @
 	for (int i = 0; i < sizeof(classRosterArray) / sizeof(classRosterArray[0]); ++i) {
 		string emailCheck = classRosterArray[i]->getEmail();
-		if(email contains " " or doesnt contain @ or has no period after @)
+		if (emailCheck.find(' ') != string::npos ||
+			emailCheck.find('@') == string::npos ||
+			emailCheck.find('.', emailCheck.find('@')) == string::npos) {
+			cout << emailCheck << " is an invalid email address." << endl << endl;
+		}
 	}
 }
-*/
 
-void Roster::printByDegreeProgram(int degreeeProgram)
+void Roster::printByDegreeProgram(degreeType degreeProgram)
 {
+	for (int i = 0; i < sizeof(classRosterArray) / sizeof(classRosterArray[0]); ++i) {
+		degreeType degreeCheck = classRosterArray[i]->getDegree();
+		if (degreeProgram == degreeCheck) {
+			classRosterArray[i]->print();
+		}
+	}
+}
+
+void Roster::printByDegreeProgram(string degreeProgram)
+{
+	for (int i = 0; i < sizeof(classRosterArray) / sizeof(classRosterArray[0]); ++i) {
+		degreeType degreeCheck = classRosterArray[i]->getDegree();
+		if (convert(degreeProgram) == degreeCheck) {
+			classRosterArray[i]->print();
+		}
+	}
 }
 
 void Roster::printStudentNames()
@@ -81,7 +97,7 @@ void Roster::printStudentNames()
 	return;
 }
 
-int main() {
+void main() {
 	
 	Roster classRoster;
 
@@ -120,8 +136,24 @@ int main() {
 		classRoster.add(iStudentID, iFirstName, iLastName, iEmail, stoi(iAge), stoi(iDaysTC1), stoi(iDaysTC2), stoi(iDaysTC3), iDegree);
 	}
 
+	cout << "Course: Scripting and Programming - Applications - C867" << endl;
+	cout << "Programing Language Used: C++" << endl;
+	cout << "Student Name: Daniel Creutz" << endl;
+	cout << "Student ID: 000874725" << endl << endl;
+
 	classRoster.printAll();
-	//classRoster.printInvalidEmails();
+	classRoster.printInvalidEmails();
 	
-	return 0;
+	for (int i = 0; i < 5; i++) {
+		string currentID = classRoster.classRosterArray[i]->getStudentID();
+		string currentName = classRoster.classRosterArray[i]->getStudentName();
+		cout << "Requested info for: " << currentName << endl;
+		cout << "Student: " << currentID << endl;
+		classRoster.printDaysInCourse(currentID);
+		classRoster.printByDegreeProgram(SOFTWARE);
+		classRoster.remove("A3");
+		classRoster.remove("A3");
+	}
+	
+	return;
 }
