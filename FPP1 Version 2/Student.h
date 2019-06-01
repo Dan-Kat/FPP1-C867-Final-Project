@@ -1,38 +1,40 @@
 #pragma once
 #include "degree.h"
-#include <string>
+#include <iostream>
+#include <cstddef>
 
 class Student
 {
 public:
 	Student();
-	Student(std::string resStudentID, std::string resFirstName, std::string resLastName, std::string resEmailAddress, int resAge,
-		int resDaysTC[], degreeType resStudentDegree);
-	~Student();
+	Student(string resStudentID, string resFirstName, string resLastName, string resEmailAddress, int resAge,
+		int resDaysTC1, int resDaysTC2, int resDaysTC3, degreeType resStudentDegree);
+	//~Student();
 
-	std::string getStudentID();
-	void getStudentName();
-	void getEmail();
-	void getAge();
-	void getDaysTC();
-	void getDegree();
-
-	void setStudentID();
-	void setStudentName();
-	void setEmail();
-	void setAge();
-	void setDaysTC();
-	void setDegree();
-
+	string getStudentID();
+	string getStudentName();
+	string getEmail();
+	int getAge();
+	int* getDaysTC();
+	degreeType getDegree();
 	virtual degreeType getDegreeProgram();
 
+	void setStudentID(string newStudentID);
+	void setStudentName(string newFirstName, string newLastName);
+	void setEmail(string newEmailAddress);
+	void setAge(int newAge);
+	void setDaysTC(int newDaysTC1, int newDaysTC2, int newDaysTC3);
+	void setDegree(degreeType newDegreeStr);
+	void setDegree(int newDegreeInt);
+	
+	string printDegree(degreeType inputDegree);
 	void print();
 
 protected:
-	std::string studentID;
-	std::string firstName;
-	std::string lastName;
-	std::string emailAddress;
+	string studentID;
+	string firstName;
+	string lastName;
+	string emailAddress;
 	int age;
 	int daysInCourse[3];
 	degreeType studentDegree;

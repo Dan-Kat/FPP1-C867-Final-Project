@@ -1,13 +1,14 @@
 #pragma once
 #include <string>
+using namespace std;
 
 enum degreeType {
 	UNASSIGNED,
 	SECURITY,
-	NETWORKING,
+	NETWORK,
 	SOFTWARE
 };
 
-degreeType convert(std::string inputStr);
+degreeType convert(string inputStr);
 
 degreeType convert(int inputInt);

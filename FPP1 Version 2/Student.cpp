@@ -1,8 +1,8 @@
 #pragma once
 #include "Student.h"
-#include <iostream>
-#include <cstddef>
-using namespace std;
+
+
+
 
 Student::Student()
 {
@@ -15,20 +15,19 @@ Student::Student()
 		daysInCourse[i] = NULL;
 	}
 	studentDegree = UNASSIGNED;
-	return;
 }
 
 Student::Student(string resStudentID, string resFirstName, string resLastName, string resEmailAddress, int resAge,
-	int resDaysTC[], degreeType resStudentDegree)
+	int resDaysTC1, int resDaysTC2, int resDaysTC3, degreeType resStudentDegree)
 {
 	studentID = resStudentID;
 	firstName = resFirstName;
 	lastName = resLastName;
 	emailAddress = resEmailAddress;
 	age = resAge;
-	for (int i = 0; i < sizeof(daysInCourse); ++i) {
-		daysInCourse[i] = resDaysTC[i];
-	}
+	daysInCourse[0] = resDaysTC1;
+	daysInCourse[1] = resDaysTC2;
+	daysInCourse[2] = resDaysTC3;
 	studentDegree = resStudentDegree;
 }
 
@@ -40,9 +39,16 @@ void Student::print() {
 	cout << "Last Name: " << lastName << "\t";
 	cout << "Email: " << emailAddress << "\t";
 	cout << "Age: " << age << "\t";
-	cout << "Days left in course: " << daysInCourse << "\t";
-	cout << "Students Degree: " << studentDegree << endl;
-	return;
+	cout << "Days left in course: " << daysInCourse[0] << ", " << daysInCourse[1] << ", " << daysInCourse[2] << "\t";
+	cout << "Students Degree: " << printDegree(studentDegree) << "\t" << endl;
+}
+
+string Student::printDegree(degreeType inputDegree)
+{
+	if (inputDegree == UNASSIGNED) { return string("Unassigned"); }
+	else if (inputDegree == NETWORK) { return string("Network"); }
+	else if (inputDegree == SECURITY) { return string("Security"); }
+	else if (inputDegree == SOFTWARE) { return string("Software"); }
 }
 
 degreeType Student::getDegreeProgram()
@@ -50,59 +56,78 @@ degreeType Student::getDegreeProgram()
 	return studentDegree;
 }
 
-std::string Student::getStudentID()
+string Student::getStudentID()
 {
 	return studentID;
 }
 
-void Student::getStudentName()
+string Student::getStudentName()
 {
+	string fullName = firstName + " " + lastName;
+	return fullName;
 }
 
-void Student::getEmail()
+string Student::getEmail()
 {
+	return emailAddress;
 }
 
-void Student::getAge()
+int Student::getAge()
 {
+	return age;
 }
 
-void Student::getDaysTC()
+int* Student::getDaysTC()
 {
+	return daysInCourse;
 }
 
-void Student::getDegree()
+degreeType Student::getDegree()
 {
+	return studentDegree;
 }
 
 //-----------------------Mutators------------------------------
-void Student::setStudentID()
+void Student::setStudentID(string newStudentID)
 {
+	studentID = newStudentID;
 }
 
-void Student::setStudentName()
+void Student::setStudentName(string newFirstname, string newLastName)
 {
+	firstName = newFirstname;
+	lastName = newLastName;
 }
 
-void Student::setEmail()
+void Student::setEmail(string newEmailAddress)
 {
+	emailAddress = newEmailAddress;
 }
 
-void Student::setAge()
+void Student::setAge(int newAge)
 {
+	age = newAge;
 }
 
-void Student::setDaysTC()
+void Student::setDaysTC(int newDaysTC1, int newDaysTC2, int newDaysTC3)
 {
+	daysInCourse[0] = newDaysTC1;
+	daysInCourse[1] = newDaysTC2;
+	daysInCourse[2] = newDaysTC3;
 }
 
-void Student::setDegree()
+void Student::setDegree(int newDegreeInt)
 {
+	studentDegree = convert(newDegreeInt);
+}
+
+void Student::setDegree(degreeType newDegreeStr)
+{
+	studentDegree = newDegreeStr;
 }
 
 //------------------------Destructors----------------------------
-Student::~Student()
+/*Student::~Student()
 {
 	cout << "Calling destructor for object." << endl;
-}
-
+}*/
