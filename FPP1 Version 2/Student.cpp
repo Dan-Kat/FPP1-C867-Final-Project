@@ -49,11 +49,7 @@ string Student::printDegree(degreeType inputDegree)
 	else if (inputDegree == NETWORK) { return string("Network"); }
 	else if (inputDegree == SECURITY) { return string("Security"); }
 	else if (inputDegree == SOFTWARE) { return string("Software"); }
-}
-
-degreeType Student::getDegreeProgram()
-{
-	return studentDegree;
+	return "Error: invalid type of degree.";
 }
 
 string Student::getStudentID()
@@ -85,6 +81,11 @@ void Student::getDaysTC()
 degreeType Student::getDegree()
 {
 	return studentDegree;
+}
+
+degreeType Student::getDegreeProgram()
+{
+	//intentionally left empty, to be overidden by subclasses.
 }
 
 //-----------------------Mutators------------------------------
@@ -129,5 +130,5 @@ void Student::setDegree(degreeType newDegreeStr)
 //------------------------Destructors----------------------------
 Student::~Student()
 {
-	cout << "Calling destructor for student object." << endl;
+	cout << "Calling destructor for Student object." << endl;
 }

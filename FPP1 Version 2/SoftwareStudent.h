@@ -4,12 +4,14 @@
 class SoftwareStudent :
 	public Student
 {
-
+	using Student::Student;
 public:
 	SoftwareStudent();
 	~SoftwareStudent();
 
-private:
+	degreeType getDegreeProgram();
 
+private:
+	degreeType degree;
 };
 

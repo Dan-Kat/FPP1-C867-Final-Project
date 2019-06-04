@@ -1,6 +1,8 @@
 #pragma once
 #include <sstream>
-#include "Student.h"
+#include "NetworkStudent.h"
+#include "SoftwareStudent.h"
+#include "SecurityStudent.h"
 
 class Roster
 {

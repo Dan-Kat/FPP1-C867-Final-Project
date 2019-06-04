@@ -28,7 +28,7 @@ public:
 	void setDegree(int newDegreeInt);
 	
 	string printDegree(degreeType inputDegree);
-	void print();
+	virtual void print();
 
 protected:
 	string studentID;
